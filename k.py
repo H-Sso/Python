@@ -3,7 +3,7 @@ import numpy as np
 
 
 def get_ror(k=0.5):
-    df = pyupbit.get_ohlcv("KRW-BTC")
+    df = pyupbit.get_ohlcv("KRW-ETH")
     df['range'] = (df['high'] - df['low']) * k
     df['target'] = df['open'] + df['range'].shift(1)
 
@@ -16,6 +16,6 @@ def get_ror(k=0.5):
     return ror
 
 
-for k in np.arange(0.01, 2.0, 0.01):
+for k in np.arange(0.01, 1.00, 0.001):
     ror = get_ror(k)
     print("%.1f %f" % (k, ror))
